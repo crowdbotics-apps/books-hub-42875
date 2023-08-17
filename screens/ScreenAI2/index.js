@@ -84,8 +84,7 @@ const styles = StyleSheet.create({
   bookImage: {
     width: "100%",
     height: 150,
-    borderRadius: 8,
-    backgroundColor: "red"
+    borderRadius: 8
   },
   bookName: {
     marginTop: 8,
