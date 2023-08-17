@@ -2,11 +2,13 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.viewsets import ModelViewSet, ViewSet
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from home.api.v1.serializers import (
     SignupSerializer,
-    UserSerializer,
+    UserSerializer, PopularBooksSerializer,
 )
+from home.models import PopularBooks
 
 
 class SignupViewSet(ModelViewSet):
@@ -28,3 +30,9 @@ class LoginViewSet(ViewSet):
         token, created = Token.objects.get_or_create(user=user)
         user_serializer = UserSerializer(user)
         return Response({"token": token.key, "user": user_serializer.data})
+
+
+class PopularBooksViewSet(ModelViewSet):
+    serializer_class = PopularBooksSerializer
+    permission_classes = [AllowAny, ]
+    queryset = PopularBooks.objects.all()
