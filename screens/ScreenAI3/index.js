@@ -1,34 +1,54 @@
-import React from "react";
-import { View, Text, Image, SafeAreaView, StyleSheet } from "react-native";
+import React from "react"
+import {
+  View,
+  Text,
+  Image,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity
+} from "react-native"
 
-const BookScreen = () => {
-  return <SafeAreaView style={styles.container}>
-      
+const BookScreen = ({ route, navigation }) => {
+  const { data } = route?.params
+
+  return (
+    <SafeAreaView style={styles.container}>
       <View style={styles.bookContainer}>
         <View style={styles.header}>
-        <Image source={{
-          uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShFEmS3xQVIFPFh-JPkxXOuY059M3RGTwdkg&usqp=CAU"
-        }} style={styles.backIcon} />
-        <Text style={styles.headerText}>Book Title</Text>
-      </View>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image
+              source={{
+                uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShFEmS3xQVIFPFh-JPkxXOuY059M3RGTwdkg&usqp=CAU"
+              }}
+              style={styles.backIcon}
+            />
+          </TouchableOpacity>
+          <Text style={styles.headerText}>{data?.title}</Text>
+        </View>
         <View style={styles.jIjDQRcf}>
-         <Image source={{
-          uri: "https://tinyurl.com/42evm3m3"
-        }} style={styles.bookImage} />
-        <View style={styles.bookInfoContainer}>
-          <Text style={styles.publisherName}>Publisher Name</Text>
-          <Text style={styles.publishingDate}>Publishing Date</Text>
-          <Text style={styles.bookReviews}>Book Reviews</Text>
+          <Image
+            source={{
+              uri: "https://img.freepik.com/free-vector/abstract-elegant-winter-book-cover_23-2148798745.jpg?w=2000"
+            }}
+            style={styles.bookImage}
+          />
+          <View style={styles.bookInfoContainer}>
+            <Text style={styles.publisherName}>
+              Publisher Name: {data?.publisher_name}
+            </Text>
+            <Text style={styles.publishingDate}>
+              Publishing Date: {data?.published_date}
+            </Text>
+            <Text style={styles.bookReviews}>
+              Book Reviews: {data?.reviews}
+            </Text>
+          </View>
         </View>
-        </View>
-       
-
-          <Text style={styles.bookDescription}> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</Text>
-        
-        
+        <Text style={styles.bookDescription}> {data?.description}</Text>
       </View>
-    </SafeAreaView>;
-};
+    </SafeAreaView>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -41,7 +61,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "white",
     padding: 20,
-    width: '90%'
+    width: "90%"
   },
   backIcon: {
     width: 20,
@@ -51,10 +71,10 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 18,
     fontWeight: "bold",
-    marginLeft: 70
+    marginLeft: 70,
+    color: "#000"
   },
   bookContainer: {
-    alignItems: "center",
     backgroundColor: "white",
     borderRadius: 10,
     padding: 20,
@@ -70,7 +90,8 @@ const styles = StyleSheet.create({
   bookImage: {
     width: 100,
     height: 150,
-    marginRight: 20
+    marginRight: 20,
+    backgroundColor: "red"
   },
   bookInfoContainer: {
     flex: 1
@@ -93,11 +114,11 @@ const styles = StyleSheet.create({
   bookDescription: {
     fontSize: 16,
     color: "#666666",
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: 30
   },
   jIjDQRcf: {
     flexDirection: "row"
   }
-});
-export default BookScreen;
+})
+export default BookScreen
