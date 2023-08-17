@@ -1,3 +1,6 @@
+import { bookhubconnector_get_api_v1_popular_books_list } from "../../store/bookhubconnector/bookhubconnector_response_get_getbooklists.slice.js";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import React from "react";
 import { View, Text, SafeAreaView, StyleSheet, Image, ScrollView } from "react-native";
 const books = [{
@@ -21,6 +24,10 @@ const books = [{
 }];
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(bookhubconnector_get_api_v1_popular_books_list());
+  }, []);
   return <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Popular Books</Text>
       <ScrollView contentContainerStyle={styles.booksContainer}>
