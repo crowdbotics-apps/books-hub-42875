@@ -11,6 +11,24 @@ function api_docs_schema_retrieve(payload) {
 function api_v1_login_create(payload) {
   return bookshubAPI.post(`/api/v1/login/`, payload.data)
 }
+function api_v1_popular_books_list(payload) {
+  return bookshubAPI.get(`/api/v1/popular_books/`)
+}
+function api_v1_popular_books_create(payload) {
+  return bookshubAPI.post(`/api/v1/popular_books/`, payload.data)
+}
+function api_v1_popular_books_retrieve(payload) {
+  return bookshubAPI.get(`/api/v1/popular_books/${payload.id}/`)
+}
+function api_v1_popular_books_update(payload) {
+  return bookshubAPI.put(`/api/v1/popular_books/${payload.id}/`, payload.data)
+}
+function api_v1_popular_books_partial_update(payload) {
+  return bookshubAPI.patch(`/api/v1/popular_books/${payload.id}/`, payload.data)
+}
+function api_v1_popular_books_destroy(payload) {
+  return bookshubAPI.delete(`/api/v1/popular_books/${payload.id}/`)
+}
 function api_v1_signup_create(payload) {
   return bookshubAPI.post(`/api/v1/signup/`, payload.data)
 }
@@ -50,6 +68,12 @@ function rest_auth_user_partial_update(payload) {
 export const apiService = {
   api_docs_schema_retrieve,
   api_v1_login_create,
+  api_v1_popular_books_list,
+  api_v1_popular_books_create,
+  api_v1_popular_books_retrieve,
+  api_v1_popular_books_update,
+  api_v1_popular_books_partial_update,
+  api_v1_popular_books_destroy,
   api_v1_signup_create,
   rest_auth_login_create,
   rest_auth_logout_retrieve,
