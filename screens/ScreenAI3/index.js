@@ -8,8 +8,7 @@ import {
   TouchableOpacity
 } from "react-native"
 
-const BookScreen = ({ route, navigation }) => {
-  const { data } = route?.params
+const BookScreen = ({ navigation , route}) => {
 
   return (
     <SafeAreaView style={styles.container}>
@@ -23,7 +22,7 @@ const BookScreen = ({ route, navigation }) => {
               style={styles.backIcon}
             />
           </TouchableOpacity>
-          <Text style={styles.headerText}>{data?.title}</Text>
+          <Text style={styles.headerText}>{route?.params?.data?.title}</Text>
         </View>
         <View style={styles.jIjDQRcf}>
           <Image
@@ -34,17 +33,17 @@ const BookScreen = ({ route, navigation }) => {
           />
           <View style={styles.bookInfoContainer}>
             <Text style={styles.publisherName}>
-              Publisher Name: {data?.publisher_name}
+              Publisher Name: {route?.params?.data?.publisher_name}
             </Text>
             <Text style={styles.publishingDate}>
-              Publishing Date: {data?.published_date}
+              Publishing Date: {route?.params?.data?.published_date}
             </Text>
             <Text style={styles.bookReviews}>
-              Book Reviews: {data?.reviews}
+              Book Reviews: {route?.params?.data?.reviews}
             </Text>
           </View>
         </View>
-        <Text style={styles.bookDescription}> {data?.description}</Text>
+        <Text style={styles.bookDescription}> {route?.params?.data?.description}</Text>
       </View>
     </SafeAreaView>
   )
